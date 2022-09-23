@@ -20,6 +20,7 @@ class CreateTables extends Migration
                 $table->string('UserName',100)->unique();
                 $table->string('UserLogin',100)->unique();
                 $table->string('UserPass',100)->unique();
+                $table->string('UserEmail',250)->unique();
                 $table->timestamps();
             }
         );
@@ -31,11 +32,27 @@ class CreateTables extends Migration
                 $table->string('nameVideo',100);
                 $table->float('sizeVideo')->unsigned();
                 $table->string('formatVideo',100);
-                $table->float('GeneralTimeVideo')->unsigned();
+                $table->time('GeneralTimeVideo')->unsigned();
                 $table->timestamps();
             }
         );
-
+        Schema::create('Reaction', function(Blueprint $table)
+            {
+                $table->foreign('videoId')->references('id')->on('Videos');
+                $table->foreign('userId')->references('id')->on('Users');
+                $table->integer('reaction')->unsigned();
+                $table->time('currentTime')->unsigned();
+                $table->timestamps();
+            }
+       
+        ); 
+        Schema::create('Subscribers', function(Blueprint $table)
+            {
+                $table->foreign('Subscriber(userId)')->references('id')->on('Users');
+                $table->foreign('Subscribers(userId)')->references('id')->on('Users');
+                $table->timestamps();
+            }
+        );    
     }
 
     /**
