@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class VidHostController extends Controller
 {
     //
-    function index(){
+    function fileUpload( Request $file){
         // return 'Привет медвед';
         return view('VidHost.index');
     }

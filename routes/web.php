@@ -1,5 +1,5 @@
 <?php
-
+use App\Videos;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,3 +15,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/home/', 'VidHostController@index');
+
+Route::get('/Videos', function () {
+    $videos=Videos::all();
+});
+Route::get('/Reaction', function () {
+    return view('welcome');
+});
+Route::get('/Subscribers', function () {
+    return view('welcome');
+});
