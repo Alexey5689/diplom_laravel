@@ -14,22 +14,22 @@ class CreateTables extends Migration
     public function up()
     {
         
-        // Schema::create('Users', function(Blueprint $table)
-        //     {
-        //         $table->increments('id');
-        //         $table->string('UserName',100);
-        //         $table->string('UserLogin',100);
-        //         $table->string('UserPass',100);
-        //         $table->string('UserEmail',250);
-        //         $table->timestamps();
+        Schema::create('User', function(Blueprint $table)
+            {
+                $table->increments('id');
+                $table->string('UserName',100);
+                $table->string('UserLogin',100);
+                $table->string('UserPass',100);
+                $table->string('UserEmail',250);
+                $table->timestamps();
                
-        //     }
-        // );
+            }
+        );
         Schema::create('Videos', function(Blueprint $table)
             {
                 $table->increments('id');
                 $table->integer('UserId')->unsigned();
-                $table->foreign('UserId')->references('id')->on('users');
+                $table->foreign('UserId')->references('id')->on('user');
                 $table->string('videoPath',255);
                 $table->string('nameVideo',100);
                 $table->float('sizeVideo')->unsigned();
@@ -43,7 +43,7 @@ class CreateTables extends Migration
                 $table->integer('videoId')->unsigned();
                 $table->foreign('videoId')->references('id')->on('Videos');
                 $table->integer('UserId')->unsigned();
-                $table->foreign('userId')->references('id')->on('Users');
+                $table->foreign('userId')->references('id')->on('User');
                 $table->integer('reaction')->unsigned();
                 $table->time('currentTime');
                 $table->timestamps();
@@ -53,9 +53,9 @@ class CreateTables extends Migration
         Schema::create('Subscribers', function(Blueprint $table)
             {
                $table->integer('Subscriber(userId)')->unsigned();
-                $table->foreign('Subscriber(userId)')->references('id')->on('Users');
+                $table->foreign('Subscriber(userId)')->references('id')->on('User');
                 $table->integer('Subscribers(userId)')->unsigned();
-                $table->foreign('Subscribers(userId)')->references('id')->on('Users');
+                $table->foreign('Subscribers(userId)')->references('id')->on('User');
                 $table->timestamps();
             }
         );    
